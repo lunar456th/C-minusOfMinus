@@ -15,11 +15,11 @@ code.o: code.c code.h globals.h
 	$(CC) $(CFLAGS) -c code.c
 cgen.o: cgen.c globals.h symtab.h code.h cgen.h
 	$(CC) $(CFLAGS) -c cgen.c
-lex.yy.o: cminus.l scan.h util.h globals.h
-	flex -o lex.yy.c cminus.l
+lex.yy.o: flex.l scan.h util.h globals.h
+	flex -o lex.yy.c flex.l
 	$(CC) $(CFLAGS) -c lex.yy.c
-y.tab.o: cminus.y globals.h
-	bison -d cminus.y --yacc
+y.tab.o: bison.y globals.h
+	bison -d bison.y --yacc
 	$(CC) $(CFLAGS) -c y.tab.c
 clean:
 	-rm cminus
